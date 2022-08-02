@@ -34,9 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     # needs: build
     env:
-      - FLICKR_API_KEY: ${{ secrets.FLICKR_API_KEY }}
-      - FLICKR_COLLECTION: ${{ secrets.FLICKR_COLLECTION }}
-      - FLICKR_USER: ${{ secrets.FLICKR_USER }}
+      FLICKR_API_KEY: ${{ secrets.FLICKR_API_KEY }}
+      FLICKR_COLLECTION: ${{ secrets.FLICKR_COLLECTION }}
+      FLICKR_USER: ${{ secrets.FLICKR_USER }}
     steps:
       - uses: actions/checkout@v2
       -
