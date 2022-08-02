@@ -1,0 +1,150 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* Page header */
+.banner {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.banner img {
+    max-width: 100%;
+}
+.banner .qr {
+    margin: 0 auto;
+}
+.banner > a {
+    margin-top: 2em;
+    text-align: center;
+}
+
+/* Page footer */
+footer {
+    background-color: black;
+    color: aliceblue;
+    padding: 12px 12px;
+    margin-top: 12px;
+    font-size: 0.8em;
+    text-align: right;
+}
+footer p {
+    margin: 0;
+}
+
+article,
+.banner {
+    margin: 0 12px;
+}
+/* Album */
+article hgroup {
+    display: flex;
+    flex-direction: column;
+}
+article h1 {
+    margin-bottom: 0;
+}
+article .description {
+    margin-top: 0
+}
+
+article ul {
+    list-style :none;
+    margin: 0 auto;
+    padding: 0;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+article ul li {
+    display: inline-block;
+    height: 90px;
+    flex-grow: 1;
+}
+article ul li img {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit:cover;
+    vertical-align: bottom;
+}
+  
+article ul:after {
+    content: "";
+    display: block;
+    flex-grow: 100;
+}
+
+@media (min-width: 710px) {
+    .banner {
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+    }
+    .banner > a {
+        width: 100%;
+        margin: 0 5ex 0 1ex;
+        align-self: flex-end;
+        text-align: left;
+    }
+    .banner > a img {
+        max-width: 800px;
+        width: 100%;
+    }
+    .banner .qr {
+        width: 200px;
+        flex-grow: 0;
+        margin: 0;
+    }
+    article header {
+        align-items: baseline;
+        flex-direction: row;
+    }
+    article header p {
+        padding-left: 2ex;
+    }
+    /* Bigger thumbnail in wide mode */
+    section ul li {
+        height: 120px;
+    }
+}
+
+/** LIGHTBOX MARKUP // https://codesalad.dev/blog/pop-up-image-lightbox-in-pure-css-25#_ **/
+.lightbox {
+    /* Default to hidden */
+    display: none;
+  
+    /* Overlay entire screen */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    /* A bit of padding around image */
+    padding: 1em;
+  
+    /* Translucent background */
+    background: rgba(0, 0, 0, 0.9);
+}
+  
+  /* Unhide the lightbox when it's the target */
+.lightbox:target {
+    display: block;
+}
+  
+.lightbox span {
+    /* Full width and height */
+    display: block;
+    width: 100%;
+    height: 100%;
+  
+    /* Size and position background image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

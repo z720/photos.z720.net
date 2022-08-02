@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx @11ty/eleventy --serve --watch --config=.eleventy.cjs",
-    "generate:data": "node gen.js",
-    "generate:site":  "npx @11ty/eleventy --config=.eleventy.cjs"
+    "dev": "rmdir _site; npx @11ty/eleventy --serve  --port=3000 --watch --config=.eleventy.cjs",
+    "generate:data": "node _src/data.js",
+    "generate:site": "rm _site; npx @11ty/eleventy --config=.eleventy.cjs"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +14,8 @@
     "@11ty/eleventy": "^1.0.1",
     "mustache": "^4.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "dotenv": "^16.0.1"
+  }
 }

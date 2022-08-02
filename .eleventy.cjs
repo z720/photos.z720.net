@@ -1,4 +1,9 @@
 module.exports = function(eleventyConfig) {
-    eleventyConfig.addPassthroughCopy("styles/");
+  let today = new Date();
+    eleventyConfig.addPassthroughCopy("assets/");
+    eleventyConfig.addGlobalData("today", `${today.toLocaleDateString('fr')}`);
     // Return your Object options:
+    return {
+      jsDataFileSuffix: ".11tydata.cjs"
+    }
   };

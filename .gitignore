@@ -1,3 +1,4 @@
+_data/photos.json
+.env
+_site
 node_modules/
-public/
-_site/

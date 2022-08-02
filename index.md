@@ -1,7 +1,4 @@
 ---
-layout: minimal/index.mustache
-title: Street photography
+layout: minimal/albums.mustache
+title: Follow the light - My photos
 ---
-
-
-Welcome to my street photography portfolio

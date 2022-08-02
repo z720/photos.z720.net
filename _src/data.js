@@ -1,26 +1,39 @@
 import { get }  from 'https';
-import { writeFile } from 'node:fs/promises';
+import { writeFile, mkdir } from 'node:fs/promises';
+import {config} from 'dotenv';
 
-import config from "./config.js";
+config();
 
-// run for all albums
-console.log('Collect', config.flickr);
-if(Array.isArray(config.flickr)) {
-	Promise.all(config.flickr.map((id) => getAlbum(id)))
-	.then(r => {
-		return writeFile('src/_data/photos.json', JSON.stringify({ albums: r }, undefined, "\t"));
-	}).then(() => {
-		console.log('Extract', (new Date()).toString());
-	}).catch(e => {
-		console.log(e);
-	});
-} else if (typeof config.flickr == 'string') {
-	getAlbum(config.flickr).then(r => {
-		return writeFile('src/_data/album.json', JSON.stringify(r, undefined, "\t"));
-	}).then(() => {
-		console.log('Extract', (new Date()).toString());
-	}).catch(e => {
-		console.log(e);
+mkdir('_data', {recursive: true}).then(() => {
+	listSets(process.env.FLICKR_COLLECTION, process.env.FLICKR_USER).then(sets => {
+		Promise.all(sets.map(id => getAlbum(id)))
+		.then(r => {
+			return writeFile('_data/photos.json', JSON.stringify({ albums: r }, undefined, "\t"));
+		}).then(() => {
+			console.log('Extract', (new Date()).toString());
+		}).catch(e => {
+			console.log(e);
+		});
+	})
+});
+
+function listSets(collection, user) {
+	return new Promise((resolve) => {
+		getCollection(collection, user).then(resolve);
+	})
+}
+
+function getCollection(id, user) {
+	return new Promise((resolve, reject) => {
+		call('flickr.collections.getTree', { 'collection_id': id, 'user_id': user}).then(data => {
+			if(data.collections) {
+				resolve(data.collections.collection.reduce((p,c) => {
+					return p.concat(c.set.map(s => s.id));
+				},[]));
+			} else {
+				reject("Collection call failed...")
+			}
+		})
 	});
 }
 
@@ -39,14 +52,14 @@ function getPhoto(id) {
 				urlmap[e.label] = e.source;
 			});
 			resolve({
+				id: i.photo.id,
 				title: i.photo.title['_content'],
 				description: i.photo.title['_content'],
 				date: i.photo.dates.posted,
-				sizes: urls,
-				urls: urlmap
+				// sizes: urls,
+				urls: urlmap,
 			});
-		}
-		);
+		});
 	});
 }
 
@@ -63,11 +76,12 @@ function getAlbum(id) {
 				reject(i.message);
 			} else {
 				photoset = {
+					id: i.photoset.id,
 					title: i.photoset ? i.photoset.title['_content'] : null,
-					description: i.photoset ? i.photoset.description['_content'] : null,
+					description: i.photoset ? i.photoset.description['_content'] : null
 				}
 				Promise.all(p.photoset.photo.map(p => getPhoto(p.id))).then(photos => {
-					photoset.photos = photos.sort((a,b) => {a.date - b.date});
+					photoset.photos = photos.sort((a,b) => {return b.date - a.date});
 					resolve(photoset);
 				});
 			}

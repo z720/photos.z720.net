@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="assets/styles/screen.css" type="text/css" />
+        <meta name="generator" content="{{ eleventy.generator }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+    <header class="banner">
+        <img class="qr" src="https://qr.api.z720.net/v1" alt="qrcode vers cette page" title="{{title}}"/>
+        <a href="/" title="{{title}}"><img src = "assets/title-clean.svg" alt="Follow the Light"/></a>
+    </header>
+    <main>
+        {{#photos.albums}}
+        <article>
+            <header>
+                <h1>{{ title }}</h1>
+                {{#description}}
+                <p class="description">{{description}}</p>
+                {{/description}}
+            </header>
+            <ul>
+                {{#photos}}
+                <li>
+                    <a href="#lightbox-{{id}}">
+                        <img src="{{ urls.Small }}" alt="{{title || 'Photo'}}" data-original="{{ urls.Original }}"/>
+                    </a>
+                    <a href="#_" class="lightbox" id="lightbox-{{id}}">
+                        <span style="background-image:url('{{ urls.Original }}')"></span>
+                    </a>
+                </li>
+                {{/photos}}
+            </ul>
+        </article>
+        {{/photos.albums}}
+    </main>
+    <footer>
+        <p>v{{ pkg.version }} - Last update {{ today }}</p>
+    </footer>
+    <script>
+        let debug = document.getElementById("debug")
+        function viewport() {
+            let { innerWidth, innerHeight } = window;
+            let d = { innerWidth, innerHeight };
+            console.log(d)
+            debug.innerHTML = JSON.stringify(d)
+        }
+        window.addEventListener('resize', viewport);
+        window.addEventListener('load', viewport)
+    </script>
+    </body>
+</html>
