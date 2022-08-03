@@ -1,4 +1,5 @@
 _data/photos.json
 .env
+.secrets
 _site
 node_modules/

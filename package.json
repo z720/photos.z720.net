@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rmdir _site; npx @11ty/eleventy --serve  --port=3000 --watch --config=.eleventy.cjs",
+    "dev": "rm -r _site/*; npx @11ty/eleventy --serve  --port=3000 --watch --config=.eleventy.cjs",
     "generate:data": "node _src/data.js",
-    "generate:site": "rm _site; npx @11ty/eleventy --config=.eleventy.cjs"
+    "generate:site": "rm -r _site/*; npx @11ty/eleventy --config=.eleventy.cjs"
   },
   "author": "",
   "license": "ISC",
