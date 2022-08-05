@@ -1,0 +1,19 @@
+version: "3"
+services:
+  photos.z720.net:
+    container_name: photos.z720.net
+    environment:
+      - LETSENCRYPT_EMAIL=letsencrypt@z720.net
+      - LETSENCRYPT_HOST=photos.z720.net
+      - VIRTUAL_HOST=photos.z720.net
+    expose:
+      - 80/tcp
+    hostname: photos.z720.net
+    image: ghcr.io/z720/photos.z720.net:develop
+    networks:
+      - engine_default
+    restart: unless-stopped
+networks:
+  engine_default:
+    external: true
+    name: engine_default
