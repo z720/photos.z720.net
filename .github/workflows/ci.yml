@@ -4,6 +4,11 @@
 name: Build Docker image
 
 on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '30 7,11,17 * * *'
+    - cron: '44 14 * * *' 
+
   push:
     branches: 
       - main
