@@ -9,7 +9,7 @@ services:
     expose:
       - 80/tcp
     hostname: photos.z720.net
-    image: ghcr.io/z720/photos.z720.net:develop
+    image: ghcr.io/z720/photos.z720.net:${VERSION:-develop}
     networks:
       - engine_default
     restart: unless-stopped
