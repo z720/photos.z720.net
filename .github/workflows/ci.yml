@@ -6,14 +6,13 @@ name: Build Docker image
 on:
   # * is a special character in YAML so you have to quote this string 
   # suspend schedule until vukn fixed 
-  # schedule:
-    # - cron:  '30 7,11,17 * * *'
+  schedule:
+    - cron:  '45 5,9,15 * * *'
   workflow_dispatch:
   push:
     branches: 
       - main
       - develop
-      - docker
     tags:
       - 'v*.*.*'
   pull_request:
@@ -51,8 +50,10 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
+            type=schedule,pattern=nightly
             type=ref,event=branch
             type=ref,event=pr
+            type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
