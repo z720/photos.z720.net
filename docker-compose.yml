@@ -8,11 +8,11 @@ services:
       - VIRTUAL_HOST=photos.z720.net
     labels:
     - traefik.enable=true
-    - traefik.http.routers.${DOMAIN}.rule=Host(`${DOMAIN}`)
-    - traefik.http.routers.${DOMAIN}.entrypoints=websecure
-    - traefik.http.routers.${DOMAIN}.tls=true
-    - traefik.http.routers.${DOMAIN}.tls.certresolver=letsencrypt 
-    - traefik.http.routers.${DOMAIN}.middlewares=marker,redirectwww  
+    - traefik.http.routers.photos_z720_net.rule=Host(`${DOMAIN}`)
+    - traefik.http.routers.photos_z720_net.entrypoints=websecure
+    - traefik.http.routers.photos_z720_net.tls=true
+    - traefik.http.routers.photos_z720_net.tls.certresolver=letsencrypt 
+    - traefik.http.routers.photos_z720_net.middlewares=marker,redirectwww  
     expose:
       - 80/tcp
     hostname: ${DOMAIN}
