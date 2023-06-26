@@ -32,7 +32,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     # - run: npm test # There is no test yet
-    - run: npm audit --production
+    # - run: npm audit --production # no need for npm run (static site)
 
   image:
     runs-on: ubuntu-latest
