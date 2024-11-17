@@ -38,16 +38,18 @@
     <footer>
         <p>v{{ pkg.version }} - Last update {{ today }}</p>
     </footer>
-    <script>
-        let debug = document.getElementById("debug")
-        function viewport() {
-            let { innerWidth, innerHeight } = window;
-            let d = { innerWidth, innerHeight };
-            console.log(d)
-            debug.innerHTML = JSON.stringify(d)
-        }
-        window.addEventListener('resize', viewport);
-        window.addEventListener('load', viewport)
-    </script>
+    {{!
+        <script>
+            let debug = document.getElementById("debug")
+            function viewport() {
+                let { innerWidth, innerHeight } = window;
+                let d = { innerWidth, innerHeight };
+                console.log(d)
+                debug.innerHTML = JSON.stringify(d)
+            }
+            window.addEventListener('resize', viewport);
+            window.addEventListener('load', viewport)
+        </script>
+    }}
     </body>
 </html>
