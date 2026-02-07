@@ -94,8 +94,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secret-files:
-            FLICKR: .secrets
+          secret-files: |
+            "FLICKR=.secrets" 
           # build-args: |
           #   "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}"
           #   "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}"
