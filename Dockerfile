@@ -1,12 +1,12 @@
 FROM node AS builder
 WORKDIR /src
 COPY . /src
-#ARG FLICKR_API_KEY
-ARG FLICKR_COLLECTION
-ARG FLICKR_USER
+# #ARG FLICKR_API_KEY
+# ARG FLICKR_COLLECTION
+# ARG FLICKR_USER
 RUN npm ci
-RUN --mount=type=secret,id=FLICKR \
-    source /run/secrets/FLICKR; \ 
+RUN --mount=type=secret,id=FLICKR,target=/tmp/FLICKR \
+    source /tmp/FLICKR; \ 
     npm run generate:data
 RUN npm run generate:site
 
