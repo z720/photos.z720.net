@@ -81,7 +81,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+      - name: Write secret file from github var/secrets
+        run: |
+          echo "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}" > .secrets
+          echo "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}" >> .secrets
+          echo "FLICKR_USER=${{ secrets.FLICKR_USER }}" >> .secrets
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v4
         with:
@@ -90,10 +94,12 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}"
-            "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}"
-            "FLICKR_USER=${{ secrets.FLICKR_USER }}"
+          secret-files:
+            FLICKR: .secrets
+          # build-args: |
+          #   "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}"
+          #   "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}"
+          #   "FLICKR_USER=${{ secrets.FLICKR_USER }}"
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
