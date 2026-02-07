@@ -5,9 +5,7 @@ COPY . /src
 # ARG FLICKR_COLLECTION
 # ARG FLICKR_USER
 RUN npm ci
-RUN --mount=type=secret,id=FLICKR,target=/tmp/FLICKR \
-    source /tmp/FLICKR; \ 
-    npm run generate:data
+RUN --mount=type=secret,id=FLICKR,target=/src/.env npm run generate:data
 RUN npm run generate:site
 
 FROM ghcr.io/z720/lighttpd:develop
