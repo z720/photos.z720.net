@@ -52,9 +52,33 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm audit --production
 
+  data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Node LTS versions
+      uses: msimerson/node-lts-versions@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run generate:data
+      env: # Or as an environment variable
+        FLICKR_API_KEY: ${{ secrets.FLICKR_API_KEY }}
+        FLICKR_USER: ${{ secrets.FLICKR_USER }}
+        FLICKR_COLLECTION: ${{ secrets.FLICKR_COLLECTION }}
+    - uses: actions/upload-artifact@v6
+      with:
+        name: data
+        path: _data/photos.json
+        overwrite: true
+
   image:
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+    - build
+    - data
     steps:
       - 
         name: Checkout
