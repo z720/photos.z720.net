@@ -1,0 +1,27 @@
+name: Generate data (fecth from Flickr)
+
+on:
+#  schedule:
+    # * is a special character in YAML so you have to quote this string
+#    - cron:  '30 7,11,17 * * *'
+  workflow_dispatch:
+
+  push:
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Node LTS versions
+      uses: msimerson/node-lts-versions@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run generate:data
+    - uses: actions/upload-artifact@v2
+      with:
+        name: data
+        path: _data/photos.json

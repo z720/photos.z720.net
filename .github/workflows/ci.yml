@@ -19,6 +19,11 @@ on:
     branches: [ main, develop ]
 
 jobs:
+  data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +57,10 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v6
+      - name: Download data File
+        uses: actions/download-artifact@v2
+        with:
+          name: data  
       -
         name: Docker meta
         id: meta
@@ -84,12 +93,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Write secret file from github var/secrets
-        run: |
-          echo "FLICKR=${{ secrets.FLICKR }}" > ".secrets"
-      #     echo "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}" > .secrets
-      #     echo "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}" >> .secrets
-      #     echo "FLICKR_USER=${{ secrets.FLICKR_USER }}" >> .secrets
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v6
         with:
@@ -98,8 +101,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secret-files: |
-            FLICKR=.secrets
-
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
