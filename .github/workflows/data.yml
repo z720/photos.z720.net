@@ -29,3 +29,4 @@ jobs:
       with:
         name: data
         path: _data/photos.json
+        overwrite: true
