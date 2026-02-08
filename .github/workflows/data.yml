@@ -21,6 +21,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run generate:data
+      env: # Or as an environment variable
+        FLICKR_API_KEY: ${{ secrets.FLICKR_API_KEY }}
+        FLICKR_USER: ${{ secrets.FLICKR_USER }}
+        FLICKR_COLLECTION: ${{ secrets.FLICKR_COLLECTION }}
     - uses: actions/upload-artifact@v6
       with:
         name: data
