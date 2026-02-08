@@ -118,11 +118,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - 
-        name: Download data File
+        name: Download site Files
         uses: actions/download-artifact@v7
         with:
-          name: data
-          path: _data
+          name: site
+          path: _site         
       - 
         name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v6
