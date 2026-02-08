@@ -84,8 +84,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Write secret file from github var/secrets
-      #   run: |
+      - name: Write secret file from github var/secrets
+        run: |
+          echo "FLICKR=${{ secrets.FLICKR }}" > ".secrets"
       #     echo "FLICKR_API_KEY=${{ secrets.FLICKR_API_KEY }}" > .secrets
       #     echo "FLICKR_COLLECTION=${{ secrets.FLICKR_COLLECTION }}" >> .secrets
       #     echo "FLICKR_USER=${{ secrets.FLICKR_USER }}" >> .secrets
@@ -98,7 +99,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secret-files: |
-            FLICKR=${{ secrets.FLICKR }}
+            FLICKR=.secrets
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
