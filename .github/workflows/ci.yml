@@ -78,11 +78,6 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v6
-      - 
-        name: Download data File
-        uses: actions/download-artifact@v7
-        with:
-          name: data  
       -
         name: Docker meta
         id: meta
@@ -115,6 +110,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - 
+        name: Download data File
+        uses: actions/download-artifact@v7
+        with:
+          name: data
+          path: _data
       - 
         name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v6
