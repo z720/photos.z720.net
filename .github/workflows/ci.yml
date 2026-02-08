@@ -68,6 +68,13 @@ jobs:
         name: data
         path: _data/photos.json
         overwrite: true
+    - run: npm run generate:site
+    - uses: actions/upload-artifact@v6
+      with:
+        name: site
+        path: _site/*
+        overwrite: true
+
 
   image:
     runs-on: ubuntu-latest
