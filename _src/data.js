@@ -4,6 +4,19 @@ import {config} from 'dotenv';
 
 config();
 
+let prep =[]
+if(!process.env.FLICKR_API_KEY) {
+	prep.push("FLICKR API Key Missing")
+}
+if(!process.env.FLICKR_COLLECTION) {
+	prep.push("FLICKR Collection Missing")
+}
+if(!process.env.FLICKR_USER) {
+	prep.push("FLICKR User Missing")
+}
+if(prep.length > 0) {
+	throw("Impossible to generate data: \n "+prep.join("\n"));
+}
 mkdir('_data', {recursive: true}).then(() => {
 	listSets(process.env.FLICKR_COLLECTION, process.env.FLICKR_USER).then(sets => {
 		Promise.all(sets.map(id => getAlbum(id)))
