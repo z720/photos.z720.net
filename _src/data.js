@@ -11,7 +11,7 @@ if(!process.env.FLICKR_API_KEY) {
 if(!process.env.FLICKR_COLLECTION) {
 	prep.push("FLICKR Collection Missing")
 }
-if(!process.env.FLICKR_USERN) {
+if(!process.env.FLICKR_USER) {
 	prep.push("FLICKR User Missing")
 }
 if(prep.length > 0) {
