@@ -55,6 +55,7 @@ jobs:
     - uses: actions/checkout@v6
     - name: Node LTS versions
       uses: msimerson/node-lts-versions@v1
+    - run: npm ci
     - name: Replace Fake Data
       run: |
         cp _data/fake.json _data/photos.json
