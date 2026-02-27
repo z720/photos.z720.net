@@ -158,9 +158,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - 
-        name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+
 
   test-image:
     runs-on: ubuntu-latest
@@ -213,6 +211,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - 
-        name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}        
+    
