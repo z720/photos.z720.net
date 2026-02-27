@@ -1,0 +1,78 @@
+{
+	"albums": [
+		{
+			"id": "72157715040914443",
+			"title": "Street Photo / Black and White",
+			"description": "Serie de photos plus ou moins de rues mais en noir et blanc.",
+			"photos": [
+				{
+					"id": "23621343463",
+					"title": "",
+					"description": "",
+					"date": "1452249630",
+					"urls": {
+						"Square": "https://live.staticflickr.com/1529/23621343463_41afdbdd1e_s.jpg",
+						"Small": "https://live.staticflickr.com/1529/23621343463_41afdbdd1e_m.jpg",
+						"Medium": "https://live.staticflickr.com/1529/23621343463_41afdbdd1e.jpg",
+						"Original": "https://live.staticflickr.com/1529/23621343463_4c0c0151ed_o.jpg"
+					}
+				}
+			]
+		},
+		{
+			"id": "72157625680062633",
+			"title": "Quadrature",
+			"description": "Photos carrées d'objets ronds prises entre 2012 et 2014.",
+			"photos": [
+				{
+					"id": "5342491008",
+					"title": "Fumée",
+					"description": "Fumée",
+					"date": "1294650098",
+					"urls": {
+						"Square": "https://live.staticflickr.com/5207/5342491008_a4b1ca79b6_s.jpg",
+						"Small": "https://live.staticflickr.com/5207/5342491008_a4b1ca79b6_m.jpg",
+						"Medium": "https://live.staticflickr.com/5207/5342491008_a4b1ca79b6.jpg",
+						"Original": "https://live.staticflickr.com/5207/5342491008_5ea5e0b0e2_o.jpg"
+					}
+				},
+				{
+					"id": "5332383319",
+					"title": "Café",
+					"description": "Café",
+					"date": "1294401623",
+					"urls": {
+						"Square": "https://live.staticflickr.com/5288/5332383319_f898fb80f8_s.jpg",
+						"Small": "https://live.staticflickr.com/5288/5332383319_f898fb80f8_m.jpg",
+						"Medium": "https://live.staticflickr.com/5288/5332383319_f898fb80f8.jpg",
+						"Original": "https://live.staticflickr.com/5288/5332383319_ee9e3a820a_o.jpg"
+					}
+				},
+				{
+					"id": "5330736846",
+					"title": "Bouchon",
+					"description": "Bouchon",
+					"date": "1294333849",
+					"urls": {
+						"Square": "https://live.staticflickr.com/5246/5330736846_49fa8f93c5_s.jpg",
+						"Small": "https://live.staticflickr.com/5246/5330736846_49fa8f93c5_m.jpg",
+						"Medium": "https://live.staticflickr.com/5246/5330736846_49fa8f93c5.jpg",
+						"Original": "https://live.staticflickr.com/5246/5330736846_763ab66702_o.jpg"
+					}
+				},
+				{
+					"id": "5327787693",
+					"title": "Target",
+					"description": "Target",
+					"date": "1294263725",
+					"urls": {
+						"Square": "https://live.staticflickr.com/5007/5327787693_34779d77ec_s.jpg",
+						"Small": "https://live.staticflickr.com/5007/5327787693_34779d77ec_m.jpg",
+						"Medium": "https://live.staticflickr.com/5007/5327787693_34779d77ec.jpg",
+						"Original": "https://live.staticflickr.com/5007/5327787693_ce1d38e6c0_o.jpg"
+					}
+				}
+			]
+		}
+	]
+}
